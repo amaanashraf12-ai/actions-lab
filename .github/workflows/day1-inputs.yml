@@ -1,0 +1,31 @@
+name: day1-inputs
+on:
+  workflow_dispatch:
+    inputs:
+      who:
+        description: Your name
+        type: string
+        required: true
+      dry_run:
+        type: boolean
+        default: false
+      replicas:
+        type: number
+        default: 2
+      size:
+        type: choice
+        options: [small, medium, large]
+        default: small
+      target:
+        type: environment
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "who=${{ inputs.who }}"
+          echo "dry_run=${{ inputs.dry_run }}"
+          echo "replicas=${{ inputs.replicas }}"
+          echo "size=${{ inputs.size }}"
+          echo "target=${{ inputs.target }}"
+      - run: echo "event input is ${{ github.event.inputs.dry_run }}"
