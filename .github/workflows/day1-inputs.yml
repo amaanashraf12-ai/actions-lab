@@ -5,7 +5,7 @@ on:
       who:
         description: Your name
         type: string
-        
+        required: true
       dry_run:
         type: boolean
         default: false
@@ -15,7 +15,7 @@ on:
       size:
         type: choice
         options: [small, medium, large]
-        default: small
+        
       target:
         type: environment
 jobs:
