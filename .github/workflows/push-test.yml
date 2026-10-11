@@ -1,0 +1,12 @@
+# push-test.yml
+
+name: Push test
+
+on:
+    push
+    
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Push Detected"
