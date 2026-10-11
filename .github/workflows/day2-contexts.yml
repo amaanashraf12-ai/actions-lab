@@ -1,0 +1,39 @@
+name: day2-contexts
+on:
+  workflow_dispatch:
+    inputs:
+      who:
+        type: string
+        default: Sam
+env:
+  LEVEL: workflow
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    outputs:
+      note: ${{ steps.mk.outputs.note }}
+    steps:
+      - id: mk
+        run: echo "note=made-in-first" >> "$GITHUB_OUTPUT"
+  show:
+    needs: first
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, blue]
+    steps:
+      - run: |
+          echo "event=${{ github.event_name }}"
+          echo "ref=${{ github.ref }}"
+          echo "repo=${{ github.repository }}"
+          echo "actor=${{ github.actor }}"
+          echo "runner os=${{ runner.os }}"
+          echo "job status=${{ job.status }}"
+          echo "env LEVEL=${{ env.LEVEL }}"
+          echo "var=${{ vars.GREETING }}"
+          echo "input=${{ inputs.who }}"
+          echo "matrix=${{ matrix.color }}"
+          echo "fail-fast=${{ strategy.fail-fast }}"
+          echo "needs result=${{ needs.first.result }}"
+          echo "needs output=${{ needs.first.outputs.note }}"
+          echo "hash=${{ hashFiles('README.md') }}"
