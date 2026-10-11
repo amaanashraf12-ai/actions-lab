@@ -5,7 +5,7 @@ on:
       who:
         description: Your name
         type: string
-        required: true
+        
       dry_run:
         type: boolean
         default: false
