@@ -11,15 +11,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         version: [1, 2, 3]
-        exclude:
-          - os: windows-latest
-            version: 1
-        include:
-          - os: ubuntu-latest
-            version: 3
-            experimental: true
-          - os: ubuntu-22.04
-            version: 1
     steps:
       - run: echo "os=${{ matrix.os }} version=${{ matrix.version }} experimental=${{ matrix.experimental }}"
       - if: ${{ !(matrix.os == 'ubuntu-latest' && matrix.version == 2) }}
