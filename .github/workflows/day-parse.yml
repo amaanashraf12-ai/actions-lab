@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          echo "${{ lower(github.actor) }}"
           echo "missing var=[${{ vars.DOES_NOT_EXIST }}]"
           echo "missing input=[${{ inputs.nothing }}]"
           echo "missing field=[${{ github.not_a_field }}]"
